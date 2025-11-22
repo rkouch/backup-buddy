@@ -31,6 +31,7 @@
     },
     "image_banner_VLgfGt": {
       "type": "image-banner",
+      "disabled": true,
       "custom_css": [
         ".banner__media {background: #000; display: flex; justify-content: center; align-items: center; height: min(calc(40vw), 700px); min-height: 300px; /* roughly 40% of viewport width */ padding-inline: 24px; overflow: hidden;}",
         ".banner__media img {width: auto; height: auto; max-width: min(1100px, 80vw); /* image stops enlarging beyond this width */ max-height: 100%; /* image never exceeds container height */ display: block;}"
@@ -52,6 +53,7 @@
     },
     "custom_liquid_wwUL4E": {
       "type": "custom-liquid",
+      "disabled": true,
       "custom_css": [
         ".powerbank-banner {background: #000; display: flex; justify-content: center; align-items: center; height: min(calc(40vw), 700px); min-height: 300px; /* roughly 40% of viewport width */ padding-inline: 24px; overflow: hidden;}",
         ".powerbank-banner .powerbank-banner-img {width: auto; height: auto; max-width: min(1100px, 80vw); /* image stops enlarging beyond this width */ max-height: 100%; /* image never exceeds container height */ display: block;}"
@@ -86,6 +88,7 @@
         "heading_dRJyMC",
         "text_FbMQcB"
       ],
+      "disabled": true,
       "custom_css": [
         ".page-width {padding: 0 !important;}",
         "@media screen and (min-width: 750px) {.page-width {padding: 0 !important; }}"
@@ -137,6 +140,7 @@
         "text_kNaVbD",
         "button_Ltwy6V"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/ChatGPT_Image_Sep_16_2025_09_15_15_PM.png",
