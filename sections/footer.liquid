@@ -5,6 +5,10 @@
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
+<p style="background: red; color: white; font-weight: bold;">
+    DEBUG: The current scheme ID is: {{ section.settings.color_scheme }}
+</p>
+
 {%- style -%}
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
