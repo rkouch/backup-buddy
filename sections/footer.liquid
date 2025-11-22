@@ -5,9 +5,9 @@
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
-<p style="background: red; color: white; font-weight: bold;">
-    DEBUG: The current scheme ID is: {{ section.settings.color_scheme }}
-</p>
+{% comment %}<p style="background: red; color: white; font-weight: bold;">{% endcomment %}
+    {% comment %}DEBUG: The current scheme ID is: {{ section.settings.color_scheme }}{% endcomment %}
+{% comment %}</p>{% endcomment %}
 
 {%- style -%}
   .footer {
