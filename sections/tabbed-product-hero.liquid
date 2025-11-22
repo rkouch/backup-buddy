@@ -11,8 +11,7 @@
     {
       "type": "image_picker",
       "id": "bg_image",
-      "label": "Main Background Image",
-      "info": "The blurred background behind the glass card."
+      "label": "Main Background Image"
     },
     {
       "type": "range",
@@ -22,8 +21,7 @@
       "step": 5,
       "unit": "%",
       "label": "Glass Card Opacity",
-      "default": 10,
-      "info": "Adjust transparency of the overlay card."
+      "default": 10
     },
     {
       "type": "range",
@@ -40,6 +38,60 @@
       "id": "card_title",
       "label": "Card Top Left Title",
       "default": "choose your buddy"
+    },
+    {
+      "type": "header",
+      "content": "Typography Sizes"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tab_label_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab Label Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Product Title Size",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "product_desc_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Text Size",
+      "default": 16
     },
     {
       "type": "header",
@@ -174,7 +226,6 @@
     color: {{ section.settings.text_color }};
     }
 
-    /* 1. Background Image Layer */
     .hero-bg-layer {
     position: absolute;
     top: 0;
@@ -191,17 +242,14 @@
     .hero-bg-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #ff00cc, #333399); /* Fallback gradient */
+    background: linear-gradient(135deg, #ff00cc, #333399);
     }
 
-
-    /* 2. Glassmorphism Card */
     .glass-card {
     position: relative;
     z-index: 1;
     width: 90%;
     max-width: 1100px;
-    /* The Glass Effect */
     background: rgba(255, 255, 255, {{ section.settings.glass_opacity | divided_by: 100.0 }});
     backdrop-filter: blur({{ section.settings.glass_blur }}px);
     -webkit-backdrop-filter: blur({{ section.settings.glass_blur }}px);
@@ -214,7 +262,6 @@
     overflow: hidden;
     }
 
-    /* 3. Card Header & Tabs */
     .card-header {
     display: flex;
     justify-content: space-between;
@@ -224,18 +271,26 @@
     font-weight: 600;
     }
 
+    /* --- TYPOGRAPHY: CARD TITLE --- */
+    .card-title-text {
+    font-size: {{ section.settings.card_title_size }}px;
+    }
+
     .tab-navigation {
     display: flex;
     gap: 30px;
     }
 
+    /* --- TYPOGRAPHY: TABS --- */
     .tab-btn {
     background: none;
     border: none;
     color: {{ section.settings.text_color }};
     opacity: 0.6;
     font-family: var(--font-heading-family);
-    font-size: 1.1rem;
+
+    font-size: {{ section.settings.tab_label_size }}px;
+
     cursor: pointer;
     padding-bottom: 5px;
     position: relative;
@@ -246,7 +301,6 @@
     opacity: 1;
     }
 
-    /* Active Tab State (Underline) */
     .tab-btn.active {
     opacity: 1;
     }
@@ -260,10 +314,8 @@
     background-color: {{ section.settings.accent_color }};
     }
 
-
-    /* 4. Tab Content Panels */
     .tab-panel {
-    display: none; /* Hidden by default */
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -271,7 +323,6 @@
     animation: fadeIn 0.5s ease;
     }
 
-    /* Only show the active panel */
     .tab-panel.active {
     display: flex;
     }
@@ -293,25 +344,30 @@
     align-items: center;
     }
 
-    /* Typography & Button */
+    /* --- TYPOGRAPHY: PRODUCT TITLE --- */
     .product-hero-title {
-    font-size: clamp(3rem, 5vw, 5rem);
+    font-size: {{ section.settings.product_title_size }}px;
     font-weight: 700;
     margin-bottom: 20px;
     font-family: var(--font-heading-family);
     line-height: 1.1;
     }
 
+    /* --- TYPOGRAPHY: PRODUCT DESCRIPTION --- */
     .product-hero-desc {
-    font-size: 1.2rem;
+    font-size: {{ section.settings.product_desc_size }}px;
     margin-bottom: 40px;
     opacity: 0.9;
     }
 
+    /* --- TYPOGRAPHY: BUTTON --- */
     .hero-shop-btn {
     display: inline-block;
     background-color: {{ section.settings.button_bg }};
     color: {{ section.settings.button_text }};
+
+    font-size: {{ section.settings.button_text_size }}px;
+
     padding: 14px 40px;
     border-radius: 50px;
     text-decoration: none;
@@ -327,7 +383,6 @@
     height: auto;
     max-height: 500px;
     object-fit: contain;
-    /* Slight tilt/perspective effect like image_2.png */
     transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
     filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3));
     }
@@ -346,6 +401,11 @@
     align-items: flex-start;
     margin-bottom: 30px;
     }
+    /* On mobile, we reduce the title size slightly relative to the user's setting
+    to prevent it from breaking the layout */
+    .product-hero-title {
+    font-size: calc({{ section.settings.product_title_size }}px * 0.7);
+    }
     .tab-panel.active {
     flex-direction: column-reverse;
     gap: 30px;
@@ -355,7 +415,6 @@
     }
     .product-img-wrapper img {
     max-height: 300px;
-    /* Less tilt on mobile */
     transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
     }
     }
@@ -363,7 +422,6 @@
 
 
 <div class="tabbed-hero-{{ section.id }}" data-section-id="{{ section.id }}">
-
     <div class="hero-bg-layer">
         {% if section.settings.bg_image != blank %}
             {{ section.settings.bg_image | image_url: width: 2000 | image_tag: class: 'hero-bg-img', loading: 'lazy' }}
@@ -373,7 +431,6 @@
     </div>
 
     <div class="glass-card">
-
         <div class="card-header">
             <span class="card-title-text">{{ section.settings.card_title }}</span>
             <div class="tab-navigation" role="tablist">
@@ -430,19 +487,16 @@
 </div>
 
 <script>
-    // Wait for DOM to load
     document.addEventListener("DOMContentLoaded", function() {
         initTabbedHero('{{ section.id }}');
     });
 
-    // Initialize when section is reloaded in Theme Editor
     if (Shopify.designMode) {
         document.addEventListener('shopify:section:load', function(event) {
             if (event.detail.sectionId === '{{ section.id }}') {
                 initTabbedHero('{{ section.id }}');
             }
         });
-        // Handle block selection in editor
         document.addEventListener('shopify:block:select', function(event) {
             const blockId = event.detail.blockId;
             const sectionId = event.detail.sectionId;
@@ -472,14 +526,12 @@
         const tabBtns = container.querySelectorAll('.tab-btn');
         const panels = container.querySelectorAll('.tab-panel');
 
-        // 1. Deactivate all
         tabBtns.forEach(b => {
             b.classList.remove('active');
             b.setAttribute('aria-selected', 'false');
         });
         panels.forEach(p => p.classList.remove('active'));
 
-        // 2. Activate target
         const activeBtn = container.querySelector(`.tab-btn[data-block-id="${blockId}"]`);
         const activePanel = container.querySelector(`.tab-panel[data-block-id="${blockId}"]`);
 
