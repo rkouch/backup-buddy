@@ -36,7 +36,7 @@
       "settings": {
         "auto_rotate": true,
         "change_slides_speed": 5,
-        "color_scheme": "accent-3",
+        "color_scheme": "scheme-81530138-5888-44c7-92d4-9ae49fcc63ec",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -45,6 +45,7 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "logo_position": "top-center",
