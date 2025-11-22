@@ -43,7 +43,7 @@
     },
     {
       "type": "paragraph",
-      "content": "This section now uses the Chillax Variable font uploaded to your Assets folder."
+      "content": "This section uses the Chillax Variable font from your Assets."
     },
     {
       "type": "range",
@@ -78,6 +78,16 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Text Size",
+      "default": 16
     },
     {
       "type": "color",
@@ -126,11 +136,10 @@
 
 {% style %}
     /* 1. LOAD CUSTOM FONT (Chillax) */
-    /* We check if the file exists in assets to prevent errors */
     @font-face {
     font-family: 'Chillax-Custom';
     src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
-    font-weight: 100 900; /* Supports variable weights */
+    font-weight: 100 900;
     font-display: swap;
     }
 
@@ -157,7 +166,6 @@
     color: {{ section.settings.text_color }};
     line-height: 1.1;
     z-index: 2;
-    /* Apply Chillax Font */
     font-family: 'Chillax-Custom', sans-serif;
     }
 
@@ -166,7 +174,7 @@
     top: 8%;
     left: 5%;
     font-size: calc(clamp(3rem, 6vw, 8rem) * {{ section.settings.heading_scale }});
-    font-weight: 600; /* Adjust this (200-700) to change thickness */
+    font-weight: 600;
     }
 
     .hero-bottom-heading {
@@ -188,7 +196,6 @@
 
     .hero-description {
     color: {{ section.settings.text_color }};
-    /* We use the standard theme font for body text to ensure readability */
     font-family: var(--font-body-family);
     font-size: {{ section.settings.description_size }}px;
     margin-bottom: 1.5rem;
@@ -199,13 +206,17 @@
     display: inline-block;
     background-color: {{ section.settings.button_bg }};
     color: {{ section.settings.button_text }};
+
+    /* DYNAMIC FONT SIZE HERE */
+    font-size: {{ section.settings.button_font_size }}px;
+
+    /* APPLY CHILLAX FONT HERE */
+    font-family: 'Chillax-Custom', sans-serif;
+
     padding: 12px 32px;
     border-radius: 50px;
     text-decoration: none;
-    /* You can change this to 'Chillax-Custom' if you want the button to match */
-    font-family: 'Chillax-Custom', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
     transition: opacity 0.3s ease;
     border: none;
     cursor: pointer;
