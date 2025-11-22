@@ -39,6 +39,43 @@
     },
     {
       "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_scale",
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Heading Scale",
+      "default": 1.0,
+      "info": "Multiplies the size of the headings. 1.0 is default."
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size",
+      "default": 18
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_font",
+      "label": "Use Custom Font",
+      "default": false,
+      "info": "Enable to pick a specific font below."
+    },
+    {
+      "type": "font_picker",
+      "id": "custom_font",
+      "label": "Custom Font Family",
+      "default": "poppins_n7"
+    },
+    {
+      "type": "header",
       "content": "Button Settings"
     },
     {
@@ -98,6 +135,11 @@
 {% endschema %}
 
 {% style %}
+    /* Load Custom Font if Enabled */
+    {% if section.settings.use_custom_font %}
+        {{ section.settings.custom_font | font_face: font_display: 'swap' }}
+    {% endif %}
+
     .custom-hero-{{ section.id }} {
     position: relative;
     width: 100%;
@@ -106,7 +148,6 @@
     display: block;
     }
 
-    /* Background Image Handling */
     .custom-hero-bg {
     position: absolute;
     top: 0;
@@ -117,33 +158,39 @@
     z-index: -1;
     }
 
-    /* Text General Styles */
     .custom-hero-text {
     position: absolute;
     color: {{ section.settings.text_color }};
-    font-family: var(--font-heading-family); /* Uses your theme's heading font */
     line-height: 1.1;
     z-index: 2;
+
+    /* Font Logic */
+    {% if section.settings.use_custom_font %}
+        font-family: {{ section.settings.custom_font.family }}, {{ section.settings.custom_font.fallback_families }};
+        font-style: {{ section.settings.custom_font.style }};
+        font-weight: {{ section.settings.custom_font.weight }};
+    {% else %}
+        font-family: var(--font-heading-family);
+    {% endif %}
     }
 
-    /* Top Left Heading */
+    /* Scalable Headings */
     .hero-top-heading {
     top: 8%;
     left: 5%;
+    /* We multiply the base clamp by your setting scale */
+    font-size: calc(clamp(3rem, 6vw, 8rem) * {{ section.settings.heading_scale }});
     font-weight: 700;
-    font-size: clamp(3rem, 6vw, 8rem); /* Responsive sizing */
     }
 
-    /* Bottom Right Heading */
     .hero-bottom-heading {
     bottom: 5%;
     right: 5%;
+    font-size: calc(clamp(3rem, 6vw, 8rem) * {{ section.settings.heading_scale }});
     font-weight: 700;
-    font-size: clamp(3rem, 6vw, 8rem); /* Responsive sizing */
     text-align: right;
     }
 
-    /* Bottom Left Group (Desc + Button) */
     .hero-bottom-left-group {
     position: absolute;
     bottom: 8%;
@@ -154,19 +201,18 @@
 
     .hero-description {
     color: {{ section.settings.text_color }};
-    font-family: var(--font-body-family);
-    font-size: 1.2rem;
+    font-family: var(--font-body-family); /* Keeps description legible */
+    font-size: {{ section.settings.description_size }}px;
     margin-bottom: 1.5rem;
     line-height: 1.4;
     }
 
-    /* Button Styling */
     .hero-custom-btn {
     display: inline-block;
     background-color: {{ section.settings.button_bg }};
     color: {{ section.settings.button_text }};
     padding: 12px 32px;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
@@ -179,7 +225,6 @@
     opacity: 0.85;
     }
 
-    /* Mobile Adjustments */
     @media screen and (max-width: 768px) {
     .custom-hero-{{ section.id }} {
     height: {{ section.settings.mobile_height }}px;
@@ -196,7 +241,7 @@
     }
 
     .hero-bottom-left-group {
-    bottom: 15%; /* Push up slightly to avoid hitting the bottom text */
+    bottom: 15%;
     left: 5%;
     max-width: 70%;
     }
