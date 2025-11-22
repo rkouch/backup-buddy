@@ -17,11 +17,13 @@
         "top_heading": "no power?",
         "bottom_heading": "no worries.",
         "description": "Sleek, reliable, and fast.\nWe’ve got your back.",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
+        "heading_scale": 1,
+        "description_size": 20,
         "button_label": "shop all",
         "button_link": "",
         "button_bg": "#000000",
-        "button_text": "#FFFFFF",
+        "button_text": "#ffffff",
         "section_height": 700,
         "mobile_height": 500
       }
