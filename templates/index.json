@@ -205,6 +205,63 @@
         "padding_top": 24,
         "padding_bottom": 100
       }
+    },
+    "tabbed_product_hero_K4h6pG": {
+      "type": "tabbed-product-hero",
+      "blocks": {
+        "tab_content_ccCRFB": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "strong",
+            "product_title": "AirBuddy Strong",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        },
+        "tab_content_4X3BD9": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "slim",
+            "product_title": "AirBuddy Slim",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        },
+        "tab_content_Ww46TP": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "cool",
+            "product_title": "AirBuddy Cool",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_ccCRFB",
+        "tab_content_4X3BD9",
+        "tab_content_Ww46TP"
+      ],
+      "name": "Tabbed Product Hero",
+      "settings": {
+        "bg_image": "shopify://shop_images/b02f898e6d04bcef0b41a13c30637b61e3fed5e5.jpg",
+        "glass_opacity": 10,
+        "glass_blur": 20,
+        "card_title": "choose your buddy",
+        "card_title_size": 28,
+        "tab_label_size": 28,
+        "product_title_size": 64,
+        "product_desc_size": 18,
+        "button_text_size": 16,
+        "text_color": "#FFFFFF",
+        "accent_color": "#FFFFFF",
+        "button_bg": "#000000",
+        "button_text": "#FFFFFF",
+        "section_height": 700
+      }
     }
   },
   "order": [
@@ -213,6 +270,7 @@
     "custom_liquid_wwUL4E",
     "image_with_text_3PaXKQ",
     "image_with_text_AeCeAG",
-    "image_with_text_kbw7hE"
+    "image_with_text_kbw7hE",
+    "tabbed_product_hero_K4h6pG"
   ]
 }
