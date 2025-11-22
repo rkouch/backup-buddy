@@ -42,14 +42,17 @@
       "content": "Typography"
     },
     {
+      "type": "paragraph",
+      "content": "This section now uses the Chillax Variable font uploaded to your Assets folder."
+    },
+    {
       "type": "range",
       "id": "heading_scale",
       "min": 0.5,
       "max": 2.0,
       "step": 0.1,
       "label": "Heading Scale",
-      "default": 1.0,
-      "info": "Multiplies the size of the headings. 1.0 is default."
+      "default": 1.0
     },
     {
       "type": "range",
@@ -60,19 +63,6 @@
       "unit": "px",
       "label": "Description Size",
       "default": 18
-    },
-    {
-      "type": "checkbox",
-      "id": "use_custom_font",
-      "label": "Use Custom Font",
-      "default": false,
-      "info": "Enable to pick a specific font below."
-    },
-    {
-      "type": "font_picker",
-      "id": "custom_font",
-      "label": "Custom Font Family",
-      "default": "poppins_n7"
     },
     {
       "type": "header",
@@ -135,10 +125,14 @@
 {% endschema %}
 
 {% style %}
-    /* Load Custom Font if Enabled */
-    {% if section.settings.use_custom_font %}
-        {{ section.settings.custom_font | font_face: font_display: 'swap' }}
-    {% endif %}
+    /* 1. LOAD CUSTOM FONT (Chillax) */
+    /* We check if the file exists in assets to prevent errors */
+    @font-face {
+    font-family: 'Chillax-Custom';
+    src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
+    font-weight: 100 900; /* Supports variable weights */
+    font-display: swap;
+    }
 
     .custom-hero-{{ section.id }} {
     position: relative;
@@ -163,34 +157,27 @@
     color: {{ section.settings.text_color }};
     line-height: 1.1;
     z-index: 2;
-
-    /* Font Logic */
-    {% if section.settings.use_custom_font %}
-        font-family: {{ section.settings.custom_font.family }}, {{ section.settings.custom_font.fallback_families }};
-        font-style: {{ section.settings.custom_font.style }};
-        font-weight: {{ section.settings.custom_font.weight }};
-    {% else %}
-        font-family: var(--font-heading-family);
-    {% endif %}
+    /* Apply Chillax Font */
+    font-family: 'Chillax-Custom', sans-serif;
     }
 
-    /* Scalable Headings */
+    /* Headings */
     .hero-top-heading {
     top: 8%;
     left: 5%;
-    /* We multiply the base clamp by your setting scale */
     font-size: calc(clamp(3rem, 6vw, 8rem) * {{ section.settings.heading_scale }});
-    font-weight: 700;
+    font-weight: 600; /* Adjust this (200-700) to change thickness */
     }
 
     .hero-bottom-heading {
     bottom: 5%;
     right: 5%;
     font-size: calc(clamp(3rem, 6vw, 8rem) * {{ section.settings.heading_scale }});
-    font-weight: 700;
+    font-weight: 600;
     text-align: right;
     }
 
+    /* Description & Button Group */
     .hero-bottom-left-group {
     position: absolute;
     bottom: 8%;
@@ -201,7 +188,8 @@
 
     .hero-description {
     color: {{ section.settings.text_color }};
-    font-family: var(--font-body-family); /* Keeps description legible */
+    /* We use the standard theme font for body text to ensure readability */
+    font-family: var(--font-body-family);
     font-size: {{ section.settings.description_size }}px;
     margin-bottom: 1.5rem;
     line-height: 1.4;
@@ -214,6 +202,8 @@
     padding: 12px 32px;
     border-radius: 50px;
     text-decoration: none;
+    /* You can change this to 'Chillax-Custom' if you want the button to match */
+    font-family: var(--font-heading-family);
     font-weight: 600;
     font-size: 1rem;
     transition: opacity 0.3s ease;
