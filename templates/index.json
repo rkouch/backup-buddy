@@ -29,6 +29,21 @@
         "mobile_height": 500
       }
     },
+    "custom_brand_values_LEkRQB": {
+      "type": "custom-brand-values",
+      "name": "Brand Values / Story",
+      "settings": {
+        "image_position": "right",
+        "title": "our\nbrand\nvalues.",
+        "description": "<p>Our brand values etc. what we stand for / our story / inspo</p>",
+        "heading_size": 72,
+        "description_size": 18,
+        "text_color": "#333333",
+        "bg_color": "#ffffff",
+        "section_height": 650,
+        "mobile_layout": "text_first"
+      }
+    },
     "tabbed_product_hero_K4h6pG": {
       "type": "tabbed-product-hero",
       "blocks": {
@@ -263,19 +278,18 @@
         "padding_bottom": 100
       }
     },
-    "custom_brand_values_LEkRQB": {
-      "type": "custom-brand-values",
-      "name": "Brand Values / Story",
+    "custom_product_grid_7AL9A9": {
+      "type": "custom-product-grid",
+      "name": "Custom Product Grid",
       "settings": {
-        "image_position": "right",
-        "title": "our\nbrand\nvalues.",
-        "description": "<p>Our brand values etc. what we stand for / our story / inspo</p>",
-        "heading_size": 72,
-        "description_size": 18,
+        "heading": "our products.",
+        "collection": "",
+        "card_bg": "#F2F2F2",
         "text_color": "#333333",
-        "bg_color": "#FFFFFF",
-        "section_height": 650,
-        "mobile_layout": "text_first"
+        "btn_view_bg": "#8e8e8e",
+        "btn_add_bg": "#000000",
+        "btn_text_color": "#FFFFFF",
+        "heading_size": 64
       }
     }
   },
@@ -287,6 +301,7 @@
     "custom_liquid_wwUL4E",
     "image_with_text_3PaXKQ",
     "image_with_text_AeCeAG",
-    "image_with_text_kbw7hE"
+    "image_with_text_kbw7hE",
+    "custom_product_grid_7AL9A9"
   ]
 }
