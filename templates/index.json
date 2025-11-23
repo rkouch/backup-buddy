@@ -29,19 +29,6 @@
         "mobile_height": 500
       }
     },
-    "brand_values_split_RpMBLP": {
-      "type": "brand-values-split",
-      "name": "Brand values split",
-      "settings": {
-        "kicker": "",
-        "heading_line_1": "our",
-        "heading_line_2": "brand",
-        "heading_line_3": "values.",
-        "body_text": "Our brand values etc. what we stand for / our story / inspo",
-        "underline_color": "#1e90ff",
-        "right_bg_color": "#e3e3e3"
-      }
-    },
     "tabbed_product_hero_K4h6pG": {
       "type": "tabbed-product-hero",
       "blocks": {
@@ -275,11 +262,26 @@
         "padding_top": 24,
         "padding_bottom": 100
       }
+    },
+    "custom_brand_values_LEkRQB": {
+      "type": "custom-brand-values",
+      "name": "Brand Values / Story",
+      "settings": {
+        "image_position": "right",
+        "title": "our\nbrand\nvalues.",
+        "description": "<p>Our brand values etc. what we stand for / our story / inspo</p>",
+        "heading_size": 72,
+        "description_size": 18,
+        "text_color": "#333333",
+        "bg_color": "#FFFFFF",
+        "section_height": 650,
+        "mobile_layout": "text_first"
+      }
     }
   },
   "order": [
     "custom_banner_W9JGRF",
-    "brand_values_split_RpMBLP",
+    "custom_brand_values_LEkRQB",
     "tabbed_product_hero_K4h6pG",
     "image_banner_VLgfGt",
     "custom_liquid_wwUL4E",
