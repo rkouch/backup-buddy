@@ -1,0 +1,242 @@
+{% schema %}
+{
+  "name": "Brand Values / Story",
+  "tag": "section",
+  "class": "section-brand-values",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Side"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position (Desktop)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Text Side"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "our brand values."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Our brand values etc. what we stand for / our story / inspo</p>"
+    },
+    {
+      "type": "header",
+      "content": "Typography & Colors"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color (Text Side)",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 400,
+      "max": 900,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Minimum Height",
+      "default": 650
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "options": [
+        { "value": "image_first", "label": "Image on Top" },
+        { "value": "text_first", "label": "Text on Top" }
+      ],
+      "default": "text_first"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Values / Story"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+    .brand-values-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: {{ section.settings.section_height }}px;
+    background-color: {{ section.settings.bg_color }};
+    }
+
+    /* --- Desktop Layout (Split Screen) --- */
+    @media screen and (min-width: 769px) {
+    .brand-values-{{ section.id }} {
+    /* Reverses row if "left" is selected */
+    flex-direction: {% if section.settings.image_position == 'right' %}row{% else %}row-reverse{% endif %};
+    align-items: stretch;
+    }
+    }
+
+    /* --- The Two Halves --- */
+    .bv-half {
+    flex: 1 1 50%;
+    width: 50%;
+    }
+
+    /* --- Left Half: Text Content --- */
+    .bv-text-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Large padding for the spacious look */
+    padding: 80px;
+    color: {{ section.settings.text_color }};
+    }
+
+    .bv-title {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    font-size: {{ section.settings.heading_size }}px;
+    /* Allows you to use <br> in the setting for multi-line text */
+    white-space: pre-line;
+    }
+
+    .bv-description {
+    font-size: {{ section.settings.description_size }}px;
+    line-height: 1.5;
+    opacity: 0.85;
+    max-width: 500px; /* Keeps line lengths readable */
+    }
+    .bv-description p {
+    margin: 0;
+    }
+
+
+    /* --- Right Half: Image --- */
+    .bv-image-side {
+    position: relative;
+    background-color: #cccccc; /* Placeholder gray */
+    overflow: hidden;
+    min-height: 400px; /* Ensures it has height even without an image */
+    }
+
+    .bv-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ensures image fills the space without stretching */
+    object-fit: cover;
+    }
+
+
+    /* --- Mobile Responsive Layout --- */
+    @media screen and (max-width: 768px) {
+    .brand-values-{{ section.id }} {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+    }
+
+    /* Controls stacking order on mobile */
+    {% if section.settings.mobile_layout == 'image_first' %}
+        .bv-image-side { order: -1; }
+    {% endif %}
+
+    .bv-half {
+    width: 100%;
+    flex: auto;
+    }
+
+    .bv-image-side {
+    height: 400px; /* Fixed height for image on mobile */
+    }
+
+    .bv-text-side {
+    padding: 50px 25px;
+    min-height: auto;
+    }
+
+    .bv-title {
+    /* Scales heading down to 60% of desktop size for mobile */
+    font-size: calc({{ section.settings.heading_size }}px * 0.6);
+    margin-bottom: 20px;
+    }
+    }
+{% endstyle %}
+
+<div class="brand-values-{{ section.id }}">
+
+    <div class="bv-half bv-text-side">
+        {% if section.settings.title != blank %}
+            <h2 class="bv-title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+            <div class="bv-description rte">
+                {{ section.settings.description }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="bv-half bv-image-side">
+        {% if section.settings.image != blank %}
+            {{ section.settings.image | image_url: width: 1500 | image_tag: class: 'bv-image', loading: 'lazy', alt: section.settings.image.alt }}
+        {% else %}
+            {{ 'image' | placeholder_svg_tag: 'bv-image placeholder-svg' }}
+        {% endif %}
+    </div>
+
+</div>
