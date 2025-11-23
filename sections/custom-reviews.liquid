@@ -92,6 +92,13 @@
 {% endschema %}
 
 {% style %}
+    @font-face {
+    font-family: 'Chillax-Custom';
+    src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    }
+
     .reviews-section-{{ section.id }} {
     padding: 60px 5%;
     background-color: {{ section.settings.bg_color }};
@@ -185,7 +192,7 @@
     }
 
     .reviews-heading-text {
-    font-family: var(--font-heading-family);
+    font-family: 'Chillax-Custom', sans-serif;
     font-weight: 700;
     font-size: {{ section.settings.heading_size }}px;
     line-height: 1.1;
