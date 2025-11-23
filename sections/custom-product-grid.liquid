@@ -78,6 +78,13 @@
 {% endschema %}
 
 {% style %}
+    @font-face {
+    font-family: 'Chillax-Custom';
+    src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    }
+
     .cp-section-{{ section.id }} {
     padding: 60px 5%;
     max-width: 1400px;
@@ -85,7 +92,7 @@
     }
 
     .cp-heading {
-    font-family: var(--font-heading-family);
+    font-family: 'Chillax-Custom', sans-serif;
     font-weight: 800;
     font-size: {{ section.settings.heading_size }}px;
     color: {{ section.settings.text_color }};
