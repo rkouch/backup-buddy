@@ -1,0 +1,261 @@
+{% schema %}
+{
+  "name": "Custom Reviews",
+  "tag": "section",
+  "class": "section-custom-reviews",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading Side (Right)"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "don’t just\ntake our\nword for\nit."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 40,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#E0E0E0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "review_image",
+          "label": "Review Image/Video Thumbnail",
+          "info": "The top part of the card."
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text",
+          "default": "Charges super fast and fits into any pocket."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Amanda S."
+        },
+        {
+          "type": "text",
+          "id": "source",
+          "label": "Source",
+          "default": "TrustPilot"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Reviews",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+    .reviews-section-{{ section.id }} {
+    padding: 60px 5%;
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden; /* Prevents scrollbar issues */
+    }
+
+    .reviews-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 40px;
+    }
+
+    /* --- LEFT SIDE: THE CARDS --- */
+    .reviews-list-wrapper {
+    flex: 1;
+    width: 60%; /* Takes up roughly 60% of width */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    padding-bottom: 20px; /* Space for scrollbar */
+
+    /* Hide Scrollbar for cleaner look */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    }
+    .reviews-list-wrapper::-webkit-scrollbar {
+    display: none;
+    }
+
+    .reviews-track {
+    display: flex;
+    gap: 20px;
+    }
+
+    .review-card {
+    flex: 0 0 320px; /* Fixed width for cards */
+    background-color: {{ section.settings.card_bg }};
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    }
+
+    /* Top half of card (Image) */
+    .review-image-area {
+    flex: 1; /* Takes up remaining space */
+    background-color: rgba(0,0,0,0.05); /* slightly darker placeholder */
+    position: relative;
+    min-height: 250px;
+    }
+
+    .review-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    }
+
+    /* Bottom half of card (Text) */
+    .review-content {
+    padding: 25px;
+    color: {{ section.settings.text_color }};
+    }
+
+    .review-text {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    }
+
+    .review-meta {
+    font-size: 1rem;
+    }
+
+    .review-author {
+    font-weight: 700;
+    }
+
+    .review-source {
+    opacity: 0.7;
+    margin-left: 5px;
+    }
+
+    /* --- RIGHT SIDE: THE HEADING --- */
+    .reviews-heading-wrapper {
+    flex: 0 0 35%; /* Takes up roughly 35% of width */
+    display: flex;
+    justify-content: flex-end; /* Aligns text block to the right */
+    }
+
+    .reviews-heading-text {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.1;
+    color: {{ section.settings.text_color }};
+    text-align: right;
+    white-space: pre-line; /* Allows line breaks from settings */
+    }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media screen and (max-width: 900px) {
+    .reviews-container {
+    flex-direction: column-reverse; /* Puts heading on top, reviews bottom */
+    gap: 30px;
+    }
+
+    .reviews-list-wrapper {
+    width: 100%;
+    }
+
+    .reviews-heading-wrapper {
+    width: 100%;
+    justify-content: flex-start; /* Left align on mobile usually looks better */
+    }
+
+    .reviews-heading-text {
+    text-align: left;
+    font-size: calc({{ section.settings.heading_size }}px * 0.6);
+    }
+
+    .review-card {
+    flex: 0 0 280px; /* Slightly smaller cards on mobile */
+    min-height: 400px;
+    }
+    }
+{% endstyle %}
+
+<div class="reviews-section-{{ section.id }}">
+    <div class="reviews-container">
+
+        <div class="reviews-list-wrapper">
+            <div class="reviews-track">
+                {%- for block in section.blocks -%}
+                    <div class="review-card" {{ block.shopify_attributes }}>
+
+                        <div class="review-image-area">
+                            {% if block.settings.review_image != blank %}
+                                {{ block.settings.review_image | image_url: width: 600 | image_tag: class: 'review-img', loading: 'lazy' }}
+                            {% endif %}
+                        </div>
+
+                        <div class="review-content">
+                            <p class="review-text">“{{ block.settings.text }}”</p>
+                            <div class="review-meta">
+                                <span class="review-author">{{ block.settings.author }}</span>
+                                {% if block.settings.source != blank %}
+                                    <span class="review-source">{{ block.settings.source }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+
+        <div class="reviews-heading-wrapper">
+            <h2 class="reviews-heading-text">
+                {{ section.settings.heading }}
+            </h2>
+        </div>
+
+    </div>
+</div>
