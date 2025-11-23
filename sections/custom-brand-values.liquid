@@ -28,10 +28,10 @@
       "content": "Text Side"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "title",
       "label": "Heading",
-      "default": "our brand values."
+      "default": "our\nbrand\nvalues."
     },
     {
       "type": "richtext",
@@ -109,6 +109,13 @@
 {% endschema %}
 
 {% style %}
+    @font-face {
+      font-family: 'Chillax-Custom';
+      src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
     .brand-values-{{ section.id }} {
     display: flex;
     flex-wrap: wrap;
@@ -143,7 +150,7 @@
     }
 
     .bv-title {
-    font-family: var(--font-heading-family);
+    font-family: 'Chillax-Custom', sans-serif;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 40px;
