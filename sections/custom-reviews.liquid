@@ -55,8 +55,7 @@
         {
           "type": "image_picker",
           "id": "review_image",
-          "label": "Review Image/Video Thumbnail",
-          "info": "The top part of the card."
+          "label": "Review Image/Video Thumbnail"
         },
         {
           "type": "textarea",
@@ -92,17 +91,10 @@
 {% endschema %}
 
 {% style %}
-    @font-face {
-    font-family: 'Chillax-Custom';
-    src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
-    font-weight: 100 900;
-    font-display: swap;
-    }
-
     .reviews-section-{{ section.id }} {
     padding: 60px 5%;
     background-color: {{ section.settings.bg_color }};
-    overflow: hidden; /* Prevents scrollbar issues */
+    overflow: hidden;
     }
 
     .reviews-container {
@@ -114,16 +106,23 @@
     gap: 40px;
     }
 
-    /* --- LEFT SIDE: THE CARDS --- */
-    .reviews-list-wrapper {
+    /* --- LEFT SIDE: CARDS WRAPPER --- */
+    .reviews-left-col {
     flex: 1;
-    width: 60%; /* Takes up roughly 60% of width */
-    overflow-x: auto; /* Allows horizontal scrolling */
-    padding-bottom: 20px; /* Space for scrollbar */
+    width: 60%;
+    position: relative; /* Needed for positioning arrows */
+    }
 
-    /* Hide Scrollbar for cleaner look */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    .reviews-list-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    /* Smooth scrolling for JS buttons */
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar (Clean look) */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     }
     .reviews-list-wrapper::-webkit-scrollbar {
     display: none;
@@ -135,7 +134,7 @@
     }
 
     .review-card {
-    flex: 0 0 320px; /* Fixed width for cards */
+    flex: 0 0 320px;
     background-color: {{ section.settings.card_bg }};
     border-radius: 20px;
     overflow: hidden;
@@ -144,10 +143,9 @@
     flex-direction: column;
     }
 
-    /* Top half of card (Image) */
     .review-image-area {
-    flex: 1; /* Takes up remaining space */
-    background-color: rgba(0,0,0,0.05); /* slightly darker placeholder */
+    flex: 1;
+    background-color: rgba(0,0,0,0.05);
     position: relative;
     min-height: 250px;
     }
@@ -159,7 +157,6 @@
     display: block;
     }
 
-    /* Bottom half of card (Text) */
     .review-content {
     padding: 25px;
     color: {{ section.settings.text_color }};
@@ -184,37 +181,75 @@
     margin-left: 5px;
     }
 
-    /* --- RIGHT SIDE: THE HEADING --- */
-    .reviews-heading-wrapper {
-    flex: 0 0 35%; /* Takes up roughly 35% of width */
+    /* --- NAVIGATION BUTTONS (ARROWS) --- */
+    .review-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
     display: flex;
-    justify-content: flex-end; /* Aligns text block to the right */
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .review-nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    background-color: #f9f9f9;
+    }
+
+    .review-nav-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    }
+
+    .btn-prev { left: -22px; }
+    .btn-next { right: -22px; }
+
+    /* --- RIGHT SIDE: HEADING --- */
+    .reviews-heading-wrapper {
+    flex: 0 0 35%;
+    display: flex;
+    justify-content: flex-end;
     }
 
     .reviews-heading-text {
-    font-family: 'Chillax-Custom', sans-serif;
+    font-family: var(--font-heading-family);
     font-weight: 700;
     font-size: {{ section.settings.heading_size }}px;
     line-height: 1.1;
     color: {{ section.settings.text_color }};
     text-align: right;
-    white-space: pre-line; /* Allows line breaks from settings */
+    white-space: pre-line;
     }
 
     /* --- MOBILE RESPONSIVE --- */
     @media screen and (max-width: 900px) {
     .reviews-container {
-    flex-direction: column-reverse; /* Puts heading on top, reviews bottom */
+    flex-direction: column-reverse;
     gap: 30px;
     }
 
-    .reviews-list-wrapper {
+    /* On mobile, hide arrows (swipe is better) */
+    .review-nav-btn {
+    display: none;
+    }
+
+    .reviews-left-col {
     width: 100%;
     }
 
     .reviews-heading-wrapper {
     width: 100%;
-    justify-content: flex-start; /* Left align on mobile usually looks better */
+    justify-content: flex-start;
     }
 
     .reviews-heading-text {
@@ -223,7 +258,7 @@
     }
 
     .review-card {
-    flex: 0 0 280px; /* Slightly smaller cards on mobile */
+    flex: 0 0 280px;
     min-height: 400px;
     }
     }
@@ -232,29 +267,36 @@
 <div class="reviews-section-{{ section.id }}">
     <div class="reviews-container">
 
-        <div class="reviews-list-wrapper">
-            <div class="reviews-track">
-                {%- for block in section.blocks -%}
-                    <div class="review-card" {{ block.shopify_attributes }}>
+        <div class="reviews-left-col">
 
-                        <div class="review-image-area">
-                            {% if block.settings.review_image != blank %}
-                                {{ block.settings.review_image | image_url: width: 600 | image_tag: class: 'review-img', loading: 'lazy' }}
-                            {% endif %}
-                        </div>
+            <button class="review-nav-btn btn-prev" aria-label="Previous slide">
+                <svg viewBox="0 0 10 16"><path d="M8.5 1L1.5 8L8.5 15" stroke="black" stroke-width="2" fill="none"/></svg>
+            </button>
+            <button class="review-nav-btn btn-next" aria-label="Next slide">
+                <svg viewBox="0 0 10 16"><path d="M1.5 1L8.5 8L1.5 15" stroke="black" stroke-width="2" fill="none"/></svg>
+            </button>
 
-                        <div class="review-content">
-                            <p class="review-text">“{{ block.settings.text }}”</p>
-                            <div class="review-meta">
-                                <span class="review-author">{{ block.settings.author }}</span>
-                                {% if block.settings.source != blank %}
-                                    <span class="review-source">{{ block.settings.source }}</span>
+            <div class="reviews-list-wrapper" id="ReviewTrack-{{ section.id }}">
+                <div class="reviews-track">
+                    {%- for block in section.blocks -%}
+                        <div class="review-card" {{ block.shopify_attributes }}>
+                            <div class="review-image-area">
+                                {% if block.settings.review_image != blank %}
+                                    {{ block.settings.review_image | image_url: width: 600 | image_tag: class: 'review-img', loading: 'lazy' }}
                                 {% endif %}
                             </div>
+                            <div class="review-content">
+                                <p class="review-text">“{{ block.settings.text }}”</p>
+                                <div class="review-meta">
+                                    <span class="review-author">{{ block.settings.author }}</span>
+                                    {% if block.settings.source != blank %}
+                                        <span class="review-source">{{ block.settings.source }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-
-                    </div>
-                {%- endfor -%}
+                    {%- endfor -%}
+                </div>
             </div>
         </div>
 
@@ -266,3 +308,26 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const section = document.querySelector('.reviews-section-{{ section.id }}');
+        const track = section.querySelector('#ReviewTrack-{{ section.id }}');
+        const prevBtn = section.querySelector('.btn-prev');
+        const nextBtn = section.querySelector('.btn-next');
+
+        if(track && prevBtn && nextBtn) {
+
+            // Scroll amount: width of card + gap (320 + 20)
+            const scrollAmount = 340;
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+        }
+    });
+</script>
