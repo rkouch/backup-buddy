@@ -141,12 +141,21 @@
             "author": "Kevin C.",
             "source": "TrustPilot"
           }
+        },
+        "review_FDJR7c": {
+          "type": "review",
+          "settings": {
+            "text": "Test",
+            "author": "Jack S.",
+            "source": "TrustPilot"
+          }
         }
       },
       "block_order": [
         "review_GTx6Ug",
         "review_6Dg9ED",
-        "review_3cKcbt"
+        "review_3cKcbt",
+        "review_FDJR7c"
       ],
       "name": "Custom Reviews",
       "settings": {
