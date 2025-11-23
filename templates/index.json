@@ -284,12 +284,45 @@
       "settings": {
         "heading": "our products.",
         "collection": "",
-        "card_bg": "#F2F2F2",
+        "card_bg": "#f2f2f2",
         "text_color": "#333333",
         "btn_view_bg": "#8e8e8e",
         "btn_add_bg": "#000000",
-        "btn_text_color": "#FFFFFF",
+        "btn_text_color": "#ffffff",
         "heading_size": 64
+      }
+    },
+    "custom_reviews_NJwBWz": {
+      "type": "custom-reviews",
+      "blocks": {
+        "review_GTx6Ug": {
+          "type": "review",
+          "settings": {
+            "text": "Charges super fast and fits into any pocket.",
+            "author": "Amanda S.",
+            "source": "TrustPilot"
+          }
+        },
+        "review_6Dg9ED": {
+          "type": "review",
+          "settings": {
+            "text": "Charges super fast and fits into any pocket.",
+            "author": "Amanda S.",
+            "source": "TrustPilot"
+          }
+        }
+      },
+      "block_order": [
+        "review_GTx6Ug",
+        "review_6Dg9ED"
+      ],
+      "name": "Custom Reviews",
+      "settings": {
+        "heading": "don’t just\ntake our\nword for\nit.",
+        "heading_size": 70,
+        "bg_color": "#FFFFFF",
+        "card_bg": "#E0E0E0",
+        "text_color": "#000000"
       }
     }
   },
@@ -302,6 +335,7 @@
     "image_with_text_3PaXKQ",
     "image_with_text_AeCeAG",
     "image_with_text_kbw7hE",
-    "custom_product_grid_7AL9A9"
+    "custom_product_grid_7AL9A9",
+    "custom_reviews_NJwBWz"
   ]
 }
