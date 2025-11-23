@@ -29,6 +29,76 @@
         "mobile_height": 500
       }
     },
+    "brand_values_split_RpMBLP": {
+      "type": "brand-values-split",
+      "name": "Brand values split",
+      "settings": {
+        "kicker": "",
+        "heading_line_1": "our",
+        "heading_line_2": "brand",
+        "heading_line_3": "values.",
+        "body_text": "Our brand values etc. what we stand for / our story / inspo",
+        "underline_color": "#1e90ff",
+        "right_bg_color": "#e3e3e3"
+      }
+    },
+    "tabbed_product_hero_K4h6pG": {
+      "type": "tabbed-product-hero",
+      "blocks": {
+        "tab_content_ccCRFB": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "strong",
+            "product_title": "AirBuddy Strong",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        },
+        "tab_content_4X3BD9": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "slim",
+            "product_title": "AirBuddy Slim",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        },
+        "tab_content_Ww46TP": {
+          "type": "tab_content",
+          "settings": {
+            "tab_label": "cool",
+            "product_title": "AirBuddy Cool",
+            "product_description": "short sentence about the product",
+            "button_label": "shop now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_content_ccCRFB",
+        "tab_content_4X3BD9",
+        "tab_content_Ww46TP"
+      ],
+      "name": "Tabbed Product Hero",
+      "settings": {
+        "bg_image": "shopify://shop_images/b02f898e6d04bcef0b41a13c30637b61e3fed5e5.jpg",
+        "glass_opacity": 10,
+        "glass_blur": 20,
+        "card_title": "choose your buddy",
+        "card_title_size": 28,
+        "tab_label_size": 28,
+        "product_title_size": 64,
+        "product_desc_size": 18,
+        "button_text_size": 16,
+        "text_color": "#ffffff",
+        "accent_color": "#ffffff",
+        "button_bg": "#000000",
+        "button_text": "#ffffff",
+        "section_height": 700
+      }
+    },
     "image_banner_VLgfGt": {
       "type": "image-banner",
       "disabled": true,
@@ -205,72 +275,16 @@
         "padding_top": 24,
         "padding_bottom": 100
       }
-    },
-    "tabbed_product_hero_K4h6pG": {
-      "type": "tabbed-product-hero",
-      "blocks": {
-        "tab_content_ccCRFB": {
-          "type": "tab_content",
-          "settings": {
-            "tab_label": "strong",
-            "product_title": "AirBuddy Strong",
-            "product_description": "short sentence about the product",
-            "button_label": "shop now",
-            "button_link": ""
-          }
-        },
-        "tab_content_4X3BD9": {
-          "type": "tab_content",
-          "settings": {
-            "tab_label": "slim",
-            "product_title": "AirBuddy Slim",
-            "product_description": "short sentence about the product",
-            "button_label": "shop now",
-            "button_link": ""
-          }
-        },
-        "tab_content_Ww46TP": {
-          "type": "tab_content",
-          "settings": {
-            "tab_label": "cool",
-            "product_title": "AirBuddy Cool",
-            "product_description": "short sentence about the product",
-            "button_label": "shop now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_content_ccCRFB",
-        "tab_content_4X3BD9",
-        "tab_content_Ww46TP"
-      ],
-      "name": "Tabbed Product Hero",
-      "settings": {
-        "bg_image": "shopify://shop_images/b02f898e6d04bcef0b41a13c30637b61e3fed5e5.jpg",
-        "glass_opacity": 10,
-        "glass_blur": 20,
-        "card_title": "choose your buddy",
-        "card_title_size": 28,
-        "tab_label_size": 28,
-        "product_title_size": 64,
-        "product_desc_size": 18,
-        "button_text_size": 16,
-        "text_color": "#FFFFFF",
-        "accent_color": "#FFFFFF",
-        "button_bg": "#000000",
-        "button_text": "#FFFFFF",
-        "section_height": 700
-      }
     }
   },
   "order": [
     "custom_banner_W9JGRF",
+    "brand_values_split_RpMBLP",
+    "tabbed_product_hero_K4h6pG",
     "image_banner_VLgfGt",
     "custom_liquid_wwUL4E",
     "image_with_text_3PaXKQ",
     "image_with_text_AeCeAG",
-    "image_with_text_kbw7hE",
-    "tabbed_product_hero_K4h6pG"
+    "image_with_text_kbw7hE"
   ]
 }
