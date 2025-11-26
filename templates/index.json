@@ -51,7 +51,7 @@
           "type": "tab_content",
           "settings": {
             "tab_label": "strong",
-            "product_title": "AirBuddy Strong",
+            "product_title": "StrongBuddy",
             "product_description": "short sentence about the product",
             "button_label": "shop now",
             "button_link": ""
@@ -61,7 +61,7 @@
           "type": "tab_content",
           "settings": {
             "tab_label": "slim",
-            "product_title": "AirBuddy Slim",
+            "product_title": "AirBuddy",
             "product_description": "short sentence about the product",
             "button_label": "shop now",
             "button_link": ""
@@ -71,7 +71,7 @@
           "type": "tab_content",
           "settings": {
             "tab_label": "cool",
-            "product_title": "AirBuddy Cool",
+            "product_title": "CoolBuddy",
             "product_description": "short sentence about the product",
             "button_label": "shop now",
             "button_link": ""
