@@ -117,17 +117,14 @@
     .reviews-left-col {
     flex: 1;
     width: 60%;
-    position: relative; /* Needed for positioning arrows */
+    position: relative;
     }
 
     .reviews-list-wrapper {
     width: 100%;
     overflow-x: auto;
     padding-bottom: 20px;
-    /* Smooth scrolling for JS buttons */
     scroll-behavior: smooth;
-
-    /* Hide scrollbar (Clean look) */
     -ms-overflow-style: none;
     scrollbar-width: none;
     }
@@ -204,12 +201,19 @@
     align-items: center;
     justify-content: center;
     z-index: 2;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s, opacity 0.3s;
     }
 
     .review-nav-btn:hover {
     transform: translateY(-50%) scale(1.1);
     background-color: #f9f9f9;
+    }
+
+    /* This class is added via JS to hide buttons */
+    .review-nav-btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
     }
 
     .review-nav-btn svg {
@@ -245,7 +249,6 @@
     gap: 30px;
     }
 
-    /* On mobile, hide arrows (swipe is better) */
     .review-nav-btn {
     display: none;
     }
@@ -324,10 +327,29 @@
         const nextBtn = section.querySelector('.btn-next');
 
         if(track && prevBtn && nextBtn) {
-
-            // Scroll amount: width of card + gap (320 + 20)
             const scrollAmount = 340;
 
+            // Function to check scroll position and toggle arrows
+            const updateArrows = () => {
+                // Hide PREV button if we are at the start (allow 10px buffer)
+                if (track.scrollLeft <= 10) {
+                    prevBtn.classList.add('is-hidden');
+                } else {
+                    prevBtn.classList.remove('is-hidden');
+                }
+
+                // Hide NEXT button if we are at the end
+                // Formula: scrollWidth (total) - clientWidth (visible) = Max Scrollable Area
+                const maxScrollLeft = track.scrollWidth - track.clientWidth;
+
+                if (track.scrollLeft >= maxScrollLeft - 10) {
+                    nextBtn.classList.add('is-hidden');
+                } else {
+                    nextBtn.classList.remove('is-hidden');
+                }
+            };
+
+            // Events
             nextBtn.addEventListener('click', () => {
                 track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             });
@@ -335,6 +357,12 @@
             prevBtn.addEventListener('click', () => {
                 track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             });
+
+            track.addEventListener('scroll', updateArrows);
+            window.addEventListener('resize', updateArrows);
+
+            // Initial Check
+            updateArrows();
         }
     });
 </script>
