@@ -45,7 +45,7 @@
       }
     },
     "tabbed_product_hero_K4h6pG": {
-      "type": "tabbed-product-hero",
+      "type": "custom-tabbed-product-hero",
       "blocks": {
         "tab_content_ccCRFB": {
           "type": "tab_content",
