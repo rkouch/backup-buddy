@@ -99,7 +99,6 @@
     }
 
     .reviews-section-{{ section.id }} {
-    padding: 60px 5%;
     background-color: {{ section.settings.bg_color }};
     overflow: hidden;
     }
@@ -108,15 +107,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+
+    /* UPDATED: Matches Product Grid exactly */
+    max-width: 1600px;
+    padding: 60px 40px;
     margin: 0 auto;
+
     gap: 40px;
     }
 
     /* --- LEFT SIDE: CARDS WRAPPER --- */
     .reviews-left-col {
     flex: 1;
-    width: 60%;
+    width: 65%; /* Increased width slightly to fill gap */
     position: relative;
     }
 
@@ -128,9 +131,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     }
-    .reviews-list-wrapper::-webkit-scrollbar {
-    display: none;
-    }
+    .reviews-list-wrapper::-webkit-scrollbar { display: none; }
 
     .reviews-track {
     display: flex;
@@ -172,20 +173,11 @@
     margin-bottom: 20px;
     }
 
-    .review-meta {
-    font-size: 1rem;
-    }
+    .review-meta { font-size: 1rem; }
+    .review-author { font-weight: 700; }
+    .review-source { opacity: 0.7; margin-left: 5px; }
 
-    .review-author {
-    font-weight: 700;
-    }
-
-    .review-source {
-    opacity: 0.7;
-    margin-left: 5px;
-    }
-
-    /* --- NAVIGATION BUTTONS (ARROWS) --- */
+    /* --- NAVIGATION BUTTONS --- */
     .review-nav-btn {
     position: absolute;
     top: 50%;
@@ -209,7 +201,6 @@
     background-color: #f9f9f9;
     }
 
-    /* This class is added via JS to hide buttons */
     .review-nav-btn.is-hidden {
     opacity: 0;
     pointer-events: none;
@@ -227,7 +218,7 @@
 
     /* --- RIGHT SIDE: HEADING --- */
     .reviews-heading-wrapper {
-    flex: 0 0 35%;
+    flex: 0 0 30%; /* Decreased width to tighten layout */
     display: flex;
     justify-content: flex-end;
     }
@@ -247,15 +238,12 @@
     .reviews-container {
     flex-direction: column-reverse;
     gap: 30px;
+    padding: 40px 20px; /* Match mobile padding */
     }
 
-    .review-nav-btn {
-    display: none;
-    }
+    .review-nav-btn { display: none; }
 
-    .reviews-left-col {
-    width: 100%;
-    }
+    .reviews-left-col { width: 100%; }
 
     .reviews-heading-wrapper {
     width: 100%;

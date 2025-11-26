@@ -86,25 +86,28 @@
     }
 
     .cp-section-{{ section.id }} {
-    padding: 60px 5%;
-    max-width: 1400px;
+    /* UPDATED: Wider container and fixed side padding */
+    max-width: 1600px;
+    padding: 60px 40px;
     margin: 0 auto;
     }
 
     .cp-heading {
-    font-family: 'Chillax-Custom', sans-serif;
+    font-family: var(--font-heading-family);
     font-weight: 800;
     font-size: {{ section.settings.heading_size }}px;
     color: {{ section.settings.text_color }};
     margin-bottom: 40px;
     line-height: 1;
+    /* Ensure heading aligns with grid */
+    padding-left: 0;
     }
 
     /* Grid Layout */
     .cp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 20px; /* Reduced gap slightly for a tighter look */
     }
 
     /* Card Styling */
@@ -144,7 +147,7 @@
     margin: 0;
     }
 
-    /* Swatches (Vertical Stack) */
+    /* Swatches */
     .cp-swatch-container {
     display: flex;
     flex-direction: column;
@@ -161,10 +164,7 @@
     display: inline-block;
     }
 
-    /* Push buttons to bottom */
-    .cp-spacer {
-    flex-grow: 1;
-    }
+    .cp-spacer { flex-grow: 1; }
 
     /* Button Group */
     .cp-btn-group {
@@ -180,8 +180,7 @@
     text-align: center;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.5rem;
-    font-family: 'Chillax-Custom', sans-serif;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
     transition: opacity 0.2s;
@@ -190,9 +189,7 @@
     justify-content: center;
     }
 
-    .cp-btn:hover {
-    opacity: 0.85;
-    }
+    .cp-btn:hover { opacity: 0.85; }
 
     .cp-btn-view {
     background-color: {{ section.settings.btn_view_bg }};
@@ -204,8 +201,10 @@
     color: {{ section.settings.btn_text_color }};
     }
 
-    /* Mobile Response */
     @media screen and (max-width: 900px) {
+    .cp-section-{{ section.id }} {
+    padding: 40px 20px; /* Smaller padding on mobile */
+    }
     .cp-grid {
     grid-template-columns: 1fr;
     }
