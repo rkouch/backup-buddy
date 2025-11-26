@@ -78,6 +78,7 @@
 {% endschema %}
 
 {% style %}
+    /* 1. Keep your Custom Font */
     @font-face {
     font-family: 'Chillax-Custom';
     src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
@@ -86,20 +87,21 @@
     }
 
     .cp-section-{{ section.id }} {
-    /* UPDATED: Wider container and fixed side padding */
-    max-width: 1500px;
+    /* 2. ALIGNMENT FIX: Match the Reviews Section dimensions */
+    max-width: 1400px;
     padding: 60px 40px;
     margin: 0 auto;
     }
 
     .cp-heading {
-    font-family: var(--font-heading-family);
+    /* Keep Chillax Font */
+    font-family: 'Chillax-Custom', sans-serif;
     font-weight: 800;
     font-size: {{ section.settings.heading_size }}px;
     color: {{ section.settings.text_color }};
     margin-bottom: 40px;
     line-height: 1;
-    /* Ensure heading aligns with grid */
+    /* Ensure it aligns flush left */
     padding-left: 0;
     }
 
@@ -107,7 +109,7 @@
     .cp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* Reduced gap slightly for a tighter look */
+    gap: 20px; /* Reduced gap slightly for tighter alignment */
     }
 
     /* Card Styling */
@@ -147,7 +149,7 @@
     margin: 0;
     }
 
-    /* Swatches */
+    /* Swatches (Vertical Stack) */
     .cp-swatch-container {
     display: flex;
     flex-direction: column;
@@ -164,7 +166,10 @@
     display: inline-block;
     }
 
-    .cp-spacer { flex-grow: 1; }
+    /* Push buttons to bottom */
+    .cp-spacer {
+    flex-grow: 1;
+    }
 
     /* Button Group */
     .cp-btn-group {
@@ -189,7 +194,9 @@
     justify-content: center;
     }
 
-    .cp-btn:hover { opacity: 0.85; }
+    .cp-btn:hover {
+    opacity: 0.85;
+    }
 
     .cp-btn-view {
     background-color: {{ section.settings.btn_view_bg }};
@@ -201,9 +208,10 @@
     color: {{ section.settings.btn_text_color }};
     }
 
+    /* Mobile Response */
     @media screen and (max-width: 900px) {
     .cp-section-{{ section.id }} {
-    padding: 40px 20px; /* Smaller padding on mobile */
+    padding: 40px 20px; /* Consistent mobile padding */
     }
     .cp-grid {
     grid-template-columns: 1fr;
