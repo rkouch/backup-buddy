@@ -15,9 +15,8 @@
       "type": "footer",
       "custom_css": [],
       "settings": {
-        "color_scheme": "scheme-81530138-5888-44c7-92d4-9ae49fcc63ec",
         "newsletter_enable": true,
-        "newsletter_heading": "Sign up to our mailing list to stay powered",
+        "newsletter_heading": "Sign up to our mailing list to stay powered.",
         "padding_top": 60,
         "padding_bottom": 32,
         "margin_top": 0
