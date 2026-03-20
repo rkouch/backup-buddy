@@ -6,7 +6,6 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* 1. DECLARE THE CUSTOM FONT */
   @font-face {
     font-family: 'Chillax-Custom';
     src: url({{ 'Chillax-Variable.woff2' | asset_url }}) format('woff2');
@@ -25,151 +24,184 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* Standardize the horizontal alignment for all rows */
+  .footer__content-top.page-width,
+  .footer__content-bottom-wrapper.page-width {
+    max-width: 100% !important;
+    padding-left: 5rem; /* This sets the "Vertical Line" on the left */
+    padding-right: 5rem;
+    margin: 0;
+    display: flex;
+    width: 100%;
+  }
+
   @media screen and (min-width: 750px) {
     .footer__content-top.page-width {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 6rem;
+      justify-content: flex-start;
+      gap: 10rem;
     }
 
     .footer-block--newsletter {
-      flex: 0 0 50%; 
-      margin-top: 0 !important;
-      text-align: left;
+      flex: 0 0 auto;
+      width: 50%; /* Limits newsletter width */
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
     .footer__blocks-wrapper {
       flex: 1;
       display: grid;
       grid-template-columns: repeat(2, 1fr); 
-      gap: 3rem;
+      gap: 4rem;
     }
   }
 
-  /* NEWSLETTER & INPUT STYLE */
+  /* HEADING STYLE */
   .footer-block__heading {
-    font-family: 'Chillax-Custom', sans-serif;
-    font-size: 4.8rem;
-    line-height: 1.1;
-    font-weight: 300; /* Light weight from variable font */
-    text-transform: none;
-    letter-spacing: -1px;
-    margin-bottom: 3rem;
+    font-family: 'Chillax-Custom', sans-serif !important;
+    font-size: 5.6rem;
+    line-height: 1;
+    font-weight: 300; 
+    letter-spacing: -2px;
+    margin: 0 0 4rem 0;
     text-align: left;
   }
 
   .footer-block__heading strong {
-    font-weight: 700; /* Bold weight from variable font */
+    font-weight: 700; 
+  }
+
+  /* INPUT FIELD - CLEAN UNDERLINE ONLY */
+  .footer .field {
+    max-width: 450px; /* Keeps input from getting too long on wide screens */
+  }
+
+  .footer .field:after, .footer .field:before {
+    display: none !important;
   }
 
   .footer .field__input {
-    font-family: 'Chillax-Custom', sans-serif;
     border: none !important;
-    border-bottom: 1px solid rgba(255,255,255,1) !important;
+    border-bottom: 1px solid #ffffff !important;
     background: transparent !important;
     border-radius: 0 !important;
-    padding-left: 0 !important;
+    padding: 1rem 0 !important;
     box-shadow: none !important;
     color: white;
-    height: 4.5rem;
+    font-size: 1.6rem;
   }
 
-  .footer-block__details-content .list-menu__item--link {
-    font-family: 'Chillax-Custom', sans-serif;
-    font-weight: 500;
-    font-size: 1.8rem;
-    padding: 0.8rem 0;
-    color: #fff;
-    text-decoration: none;
+  .footer .field__label {
+    left: 0 !important;
+    top: 1rem !important;
   }
 
-  .footer-block__heading-small {
-    font-family: 'Chillax-Custom', sans-serif;
-    font-size: 1.4rem;
-    text-transform: uppercase; /* Looks cleaner for headers */
-    letter-spacing: 1px;
-    opacity: 0.5;
-    margin-bottom: 2rem;
+  .footer .newsletter-form__button {
+    right: 0 !important;
+    top: 0 !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* SUBTEXT ALIGNMENT */
+  .newsletter-subtext {
+    margin-top: 2rem;
+    opacity: 0.6;
+    font-style: italic;
+    font-size: 1.3rem;
     text-align: left;
   }
 
-  /* BOTTOM LOGO & LINKS */
+  /* BOTTOM AREA ALIGNMENT */
   .footer__content-bottom {
     border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 8rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    margin-top: 10rem;
+    padding: 6rem 0;
   }
 
   .footer__content-bottom-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: space-between; /* Pushes Logo left, Links right */
+    align-items: center;
   }
 
   .footer-custom-logo h2 {
-    font-size: 3.8rem;
+    font-family: 'Chillax-Custom', sans-serif !important;
+    font-size: 4.2rem;
     margin: 0;
-    font-weight: 500;
-    letter-spacing: -1.5px;
+    font-weight: 400;
+    letter-spacing: -2px;
   }
 
   .footer-bottom-links {
     display: flex;
-    gap: 3rem;
+    gap: 4rem;
     font-size: 1.4rem;
-    opacity: 0.7;
+    opacity: 0.8;
+    justify-content: flex-end; /* Snaps links to the right */
   }
 
   .footer-bottom-links a {
     color: inherit;
     text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* MENU LINKS */
+  .footer-block__heading-small {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.4;
+    margin-bottom: 2rem;
+  }
+
+  .footer-block__details-content .list-menu__item--link {
+    font-weight: 500;
+    font-size: 1.7rem;
+    padding: 0.6rem 0;
+    color: #fff;
   }
 
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="footer__content-top page-width">
+<footer class="footer color-{{ section.settings.color_scheme }} gradient">
+  <div class="footer__content-top page-width section-{{ section.id }}-padding">
     
     {%- if section.settings.newsletter_enable -%}
       <div class="footer-block--newsletter">
-        <div class="footer-block__newsletter">
-          {%- if section.settings.newsletter_heading != blank -%}
-            <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
-          {%- endif -%}
-          
-          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="newsletter-form__field-wrapper">
-              <div class="field">
-                <input
-                  id="NewsletterForm--{{ section.id }}"
-                  type="email"
-                  name="contact[email]"
-                  class="field__input"
-                  value="{{ form.email }}"
-                  aria-required="true"
-                  autocorrect="off"
-                  autocapitalize="off"
-                  autocomplete="email"
-                  placeholder="Email address*"
-                  required
-                >
-                <label class="field__label" for="NewsletterForm--{{ section.id }}">Email address*</label>
-                <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe">
-                  <span class="svg-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </button>
-              </div>
-              <p style="margin-top: 2rem; opacity: 0.6; font-style: italic; font-size: 1.3rem; text-align: left;">Enjoy 10% off your first purchase on sign up</p>
+        {%- if section.settings.newsletter_heading != blank -%}
+          <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+        {%- endif -%}
+        
+        {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form__field-wrapper">
+            <div class="field">
+              <input
+                id="NewsletterForm--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="field__input"
+                value="{{ form.email }}"
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                placeholder="Email address*"
+                required
+              >
+              <label class="field__label" for="NewsletterForm--{{ section.id }}">Email address*</label>
+              <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe">
+                <span class="svg-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
             </div>
-          {%- endform -%}
-        </div>
+            <p class="newsletter-subtext">Enjoy 10% off your first purchase on sign up</p>
+          </div>
+        {%- endform -%}
       </div>
     {%- endif -%}
 
@@ -220,45 +252,35 @@
   "blocks": [
     {
       "type": "link_list",
-      "name": "t:sections.footer.blocks.link_list.name",
+      "name": "Link list",
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Quick links",
-          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+          "label": "Heading"
         },
         {
           "type": "link_list",
           "id": "menu",
           "default": "footer",
-          "label": "t:sections.footer.blocks.link_list.settings.menu.label"
+          "label": "Menu"
         }
       ]
     }
   ],
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
       "type": "checkbox",
       "id": "newsletter_enable",
       "default": true,
-      "label": "t:sections.footer.settings.newsletter_enable.label"
+      "label": "Show newsletter"
     },
     {
       "type": "inline_richtext",
       "id": "newsletter_heading",
       "default": "Sign up to our mailing list to <strong>stay powered.</strong>",
-      "label": "t:sections.footer.settings.newsletter_heading.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "label": "Newsletter heading"
     },
     {
       "type": "range",
@@ -267,7 +289,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding Top",
       "default": 36
     },
     {
@@ -277,7 +299,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding Bottom",
       "default": 36
     },
     {
