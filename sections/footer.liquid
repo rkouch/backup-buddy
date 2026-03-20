@@ -69,15 +69,17 @@
   .footer-block__heading {
     font-family: 'Chillax-Custom', sans-serif !important;
     font-size: 5.6rem !important;
-    line-height: 1 !important;
-    font-weight: 400 !important; 
+    line-height: 1.1 !important;
+    font-weight: 200 !important; /* Thinner base weight */
     letter-spacing: -2px !important;
     margin-bottom: 4rem !important;
     text-transform: none !important;
   }
 
-  .footer-block__heading strong {
-    font-weight: 800 !important;
+  /* Target bold tags explicitly */
+  .footer-block__heading strong,
+  .footer-block__heading b {
+    font-weight: 700 !important; /* Thicker bold weight */
   }
 
   /* --- THE FIX FOR THE FORM ALIGNMENT --- */
@@ -88,7 +90,6 @@
     align-items: flex-start !important;
   }
 
-  /* Target the actual form tag to stop it from auto-centering */
   .footer .newsletter-form {
     margin-left: 0 !important;
     margin-right: auto !important;
@@ -273,10 +274,10 @@
       "label": "Show newsletter"
     },
     {
-      "type": "inline_richtext",
+      "type": "html",
       "id": "newsletter_heading",
-      "default": "Sign up to our mailing list to <strong>stay powered.</strong>",
-      "label": "Newsletter heading"
+      "default": "Sign up to our<br>mailing list to <strong>stay powered.</strong>",
+      "label": "Newsletter heading (Use <br> for line breaks)"
     },
     {
       "type": "range",
