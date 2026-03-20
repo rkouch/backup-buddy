@@ -66,13 +66,12 @@
     color: #ffffff !important;
   }
 
-  /* --- THE FIX FOR THE VARIABLE FONT WEIGHT --- */
   .footer-block__heading {
     font-family: 'Chillax-Custom', sans-serif !important;
     font-size: 5.6rem !important;
     line-height: 1.1 !important;
-    font-weight: 300 !important; /* Fallback */
-    font-variation-settings: 'wght' 300 !important; /* Forces variable font to be thin */
+    font-weight: 300 !important; 
+    font-variation-settings: 'wght' 300 !important; 
     letter-spacing: -2px !important;
     margin-bottom: 4rem !important;
     text-transform: none !important;
@@ -80,11 +79,11 @@
 
   .footer-block__heading strong,
   .footer-block__heading b {
-    font-weight: 700 !important; /* Fallback */
-    font-variation-settings: 'wght' 700 !important; /* Forces variable font to be thick */
+    font-weight: 700 !important; 
+    font-variation-settings: 'wght' 700 !important; 
   }
-  /* -------------------------------------------- */
 
+  /* --- THE FIX FOR THE FORM ALIGNMENT --- */
   .footer .footer-block__newsletter {
     text-align: left !important;
     display: flex;
@@ -111,7 +110,8 @@
     width: 100% !important;
     margin: 0 !important; 
   }
-
+  
+  /* FLUSH LEFT EMAIL TEXT FIX */
   .footer .field:after, .footer .field:before {
     display: none !important;
   }
@@ -121,10 +121,20 @@
     border-bottom: 1px solid #ffffff !important;
     background: transparent !important;
     border-radius: 0 !important;
-    padding: 1rem 0 !important;
+    /* Top 1rem, Right 4rem (for arrow), Bottom 1rem, Left 0 */
+    padding: 1rem 4rem 1rem 0 !important; 
     box-shadow: none !important;
     font-size: 1.6rem;
+    text-align: left !important;
   }
+
+  .footer .field__label {
+    left: 0 !important;
+    padding-left: 0 !important; /* Strips Shopify's default indent */
+    text-align: left !important;
+    transform-origin: left top !important; /* Keeps label flush left when typing */
+  }
+  /* -------------------------------------- */
 
   .newsletter-subtext {
     margin-top: 2rem;
