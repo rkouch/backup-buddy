@@ -37,8 +37,9 @@
     }
 
     .footer-block--newsletter {
-      flex: 0 0 45%; 
+      flex: 0 0 50%; 
       margin-top: 0 !important;
+      text-align: left; /* Forces left alignment */
     }
 
     .footer__blocks-wrapper {
@@ -51,12 +52,13 @@
 
   /* NEWSLETTER & INPUT STYLE */
   .footer-block__heading {
-    font-size: 4.2rem;
+    font-size: 4.8rem; /* Made slightly larger to match photo */
     line-height: 1.1;
     font-weight: 300;
     text-transform: none;
     letter-spacing: -1px;
     margin-bottom: 3rem;
+    text-align: left; /* Left align heading */
   }
 
   .footer-block__heading strong {
@@ -76,6 +78,7 @@
     box-shadow: none !important;
     color: white;
     height: 4.5rem;
+    text-align: left;
   }
 
   .footer .field__label {
@@ -103,6 +106,7 @@
     text-transform: none;
     opacity: 0.5;
     margin-bottom: 2rem;
+    text-align: left;
   }
 
   /* BOTTOM LOGO & LINKS */
@@ -124,6 +128,7 @@
     margin: 0;
     font-weight: 400;
     letter-spacing: -1px;
+    text-align: left;
   }
 
   .footer-bottom-links {
@@ -131,6 +136,7 @@
     gap: 3rem;
     font-size: 1.4rem;
     opacity: 0.7;
+    text-align: right;
   }
 
   .footer-bottom-links a {
@@ -153,7 +159,7 @@
           {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
             <input type="hidden" name="contact[tags]" value="newsletter">
             <div class="newsletter-form__field-wrapper">
-              <div class="field">
+              <div class="field" style="justify-content: flex-start;">
                 <input
                   id="NewsletterForm--{{ section.id }}"
                   type="email"
@@ -176,7 +182,8 @@
                   </span>
                 </button>
               </div>
-              <p style="margin-top: 2rem; opacity: 0.6; font-style: italic; font-size: 1.3rem;">Enjoy 10% off your first purchase on sign up</p>
+              {% comment %} Added text-align: left here {% endcomment %}
+              <p style="margin-top: 2rem; opacity: 0.6; font-style: italic; font-size: 1.3rem; text-align: left;">Enjoy 10% off your first purchase on sign up</p>
             </div>
           {%- endform -%}
         </div>
