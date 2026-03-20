@@ -66,23 +66,25 @@
     color: #ffffff !important;
   }
 
+  /* --- THE FIX FOR THE VARIABLE FONT WEIGHT --- */
   .footer-block__heading {
     font-family: 'Chillax-Custom', sans-serif !important;
     font-size: 5.6rem !important;
     line-height: 1.1 !important;
-    font-weight: 200 !important; /* Thinner base weight */
+    font-weight: 300 !important; /* Fallback */
+    font-variation-settings: 'wght' 300 !important; /* Forces variable font to be thin */
     letter-spacing: -2px !important;
     margin-bottom: 4rem !important;
     text-transform: none !important;
   }
 
-  /* Target bold tags explicitly */
   .footer-block__heading strong,
   .footer-block__heading b {
-    font-weight: 700 !important; /* Thicker bold weight */
+    font-weight: 700 !important; /* Fallback */
+    font-variation-settings: 'wght' 700 !important; /* Forces variable font to be thick */
   }
+  /* -------------------------------------------- */
 
-  /* --- THE FIX FOR THE FORM ALIGNMENT --- */
   .footer .footer-block__newsletter {
     text-align: left !important;
     display: flex;
@@ -109,7 +111,6 @@
     width: 100% !important;
     margin: 0 !important; 
   }
-  /* -------------------------------------- */
 
   .footer .field:after, .footer .field:before {
     display: none !important;
@@ -150,6 +151,7 @@
     font-size: 4.2rem !important;
     margin: 0 !important;
     font-weight: 400 !important;
+    font-variation-settings: 'wght' 400 !important;
     letter-spacing: -2px !important;
     color: #ffffff !important;
   }
@@ -276,7 +278,7 @@
     {
       "type": "html",
       "id": "newsletter_heading",
-      "default": "Sign up to our<br>mailing list to <strong>stay powered.</strong>",
+      "default": "Sign up to our<br>mailing list to<br><strong>stay powered.</strong>",
       "label": "Newsletter heading (Use <br> for line breaks)"
     },
     {
