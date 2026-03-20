@@ -45,6 +45,7 @@
       flex: 0 0 50% !important;
       text-align: left !important;
       margin: 0 !important;
+      padding: 0 !important;
     }
 
     .footer__blocks-wrapper {
@@ -79,19 +80,35 @@
     font-weight: 800 !important;
   }
 
-  /* INPUT FIELD ALIGNMENT */
+  /* --- THE FIX FOR THE FORM ALIGNMENT --- */
   .footer .footer-block__newsletter {
     text-align: left !important;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start !important;
+  }
+
+  /* Target the actual form tag to stop it from auto-centering */
+  .footer .newsletter-form {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .footer .newsletter-form__field-wrapper {
+    max-width: 450px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
   }
 
   .footer .field {
     width: 100% !important;
-    max-width: 450px !important;
-    margin: 0 !important; /* Prevents centering */
+    margin: 0 !important; 
   }
+  /* -------------------------------------- */
 
   .footer .field:after, .footer .field:before {
     display: none !important;
@@ -107,16 +124,13 @@
     font-size: 1.6rem;
   }
 
-  .footer .newsletter-form__field-wrapper {
-    max-width: 450px !important;
-  }
-
   .newsletter-subtext {
     margin-top: 2rem;
     opacity: 0.6;
     font-style: italic;
     font-size: 1.3rem;
     text-align: left !important;
+    width: 100%;
   }
 
   /* BOTTOM AREA LOCK */
