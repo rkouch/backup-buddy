@@ -15,8 +15,8 @@
 
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
-    background-color: #1c1c1c; 
-    color: #ffffff;
+    background-color: #1c1c1c !important; 
+    color: #ffffff !important;
   }
 
   .section-{{ section.id }}-padding {
@@ -24,28 +24,27 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* Standardize the horizontal alignment for all rows */
+  /* Force the Vertical Alignment Line */
   .footer__content-top.page-width,
   .footer__content-bottom-wrapper.page-width {
     max-width: 100% !important;
-    padding-left: 5rem; /* This sets the "Vertical Line" on the left */
-    padding-right: 5rem;
-    margin: 0;
-    display: flex;
-    width: 100%;
+    margin: 0 !important;
+    padding-left: 5rem !important; 
+    padding-right: 5rem !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
   @media screen and (min-width: 750px) {
     .footer__content-top.page-width {
-      justify-content: flex-start;
-      gap: 10rem;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
     }
 
     .footer-block--newsletter {
-      flex: 0 0 auto;
-      width: 50%; /* Limits newsletter width */
+      flex: 0 0 50% !important;
+      text-align: left !important;
       margin: 0 !important;
-      padding: 0 !important;
     }
 
     .footer__blocks-wrapper {
@@ -56,24 +55,42 @@
     }
   }
 
-  /* HEADING STYLE */
+  /* TEXT COLORS & FONTS */
+  .footer h2, 
+  .footer p, 
+  .footer span, 
+  .footer a, 
+  .footer .field__input, 
+  .footer .field__label {
+    color: #ffffff !important;
+  }
+
   .footer-block__heading {
     font-family: 'Chillax-Custom', sans-serif !important;
-    font-size: 5.6rem;
-    line-height: 1;
-    font-weight: 300; 
-    letter-spacing: -2px;
-    margin: 0 0 4rem 0;
-    text-align: left;
+    font-size: 5.6rem !important;
+    line-height: 1 !important;
+    font-weight: 400 !important; 
+    letter-spacing: -2px !important;
+    margin-bottom: 4rem !important;
+    text-transform: none !important;
   }
 
   .footer-block__heading strong {
-    font-weight: 700; 
+    font-weight: 800 !important;
   }
 
-  /* INPUT FIELD - CLEAN UNDERLINE ONLY */
+  /* INPUT FIELD ALIGNMENT */
+  .footer .footer-block__newsletter {
+    text-align: left !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .footer .field {
-    max-width: 450px; /* Keeps input from getting too long on wide screens */
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 0 !important; /* Prevents centering */
   }
 
   .footer .field:after, .footer .field:before {
@@ -87,32 +104,22 @@
     border-radius: 0 !important;
     padding: 1rem 0 !important;
     box-shadow: none !important;
-    color: white;
     font-size: 1.6rem;
   }
 
-  .footer .field__label {
-    left: 0 !important;
-    top: 1rem !important;
+  .footer .newsletter-form__field-wrapper {
+    max-width: 450px !important;
   }
 
-  .footer .newsletter-form__button {
-    right: 0 !important;
-    top: 0 !important;
-    height: 100% !important;
-    margin: 0 !important;
-  }
-
-  /* SUBTEXT ALIGNMENT */
   .newsletter-subtext {
     margin-top: 2rem;
     opacity: 0.6;
     font-style: italic;
     font-size: 1.3rem;
-    text-align: left;
+    text-align: left !important;
   }
 
-  /* BOTTOM AREA ALIGNMENT */
+  /* BOTTOM AREA LOCK */
   .footer__content-bottom {
     border-top: 1px solid rgba(255,255,255,0.1);
     margin-top: 10rem;
@@ -120,16 +127,16 @@
   }
 
   .footer__content-bottom-wrapper {
-    justify-content: space-between; /* Pushes Logo left, Links right */
-    align-items: center;
+    justify-content: space-between !important;
   }
 
   .footer-custom-logo h2 {
     font-family: 'Chillax-Custom', sans-serif !important;
-    font-size: 4.2rem;
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: -2px;
+    font-size: 4.2rem !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: -2px !important;
+    color: #ffffff !important;
   }
 
   .footer-bottom-links {
@@ -137,95 +144,72 @@
     gap: 4rem;
     font-size: 1.4rem;
     opacity: 0.8;
-    justify-content: flex-end; /* Snaps links to the right */
   }
 
   .footer-bottom-links a {
-    color: inherit;
     text-decoration: none;
     white-space: nowrap;
   }
 
-  /* MENU LINKS */
-  .footer-block__heading-small {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.4;
-    margin-bottom: 2rem;
-  }
-
-  .footer-block__details-content .list-menu__item--link {
-    font-weight: 500;
-    font-size: 1.7rem;
-    padding: 0.6rem 0;
-    color: #fff;
-  }
-
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient">
+<footer class="footer">
   <div class="footer__content-top page-width section-{{ section.id }}-padding">
     
     {%- if section.settings.newsletter_enable -%}
       <div class="footer-block--newsletter">
-        {%- if section.settings.newsletter_heading != blank -%}
-          <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
-        {%- endif -%}
-        
-        {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="newsletter-form__field-wrapper">
-            <div class="field">
-              <input
-                id="NewsletterForm--{{ section.id }}"
-                type="email"
-                name="contact[email]"
-                class="field__input"
-                value="{{ form.email }}"
-                aria-required="true"
-                autocorrect="off"
-                autocapitalize="off"
-                autocomplete="email"
-                placeholder="Email address*"
-                required
-              >
-              <label class="field__label" for="NewsletterForm--{{ section.id }}">Email address*</label>
-              <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe">
-                <span class="svg-wrapper">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
+        <div class="footer-block__newsletter">
+          {%- if section.settings.newsletter_heading != blank -%}
+            <h2 class="footer-block__heading">{{ section.settings.newsletter_heading }}</h2>
+          {%- endif -%}
+          
+          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-form__field-wrapper">
+              <div class="field">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  placeholder="Email address*"
+                  required
+                >
+                <label class="field__label" for="NewsletterForm--{{ section.id }}">Email address*</label>
+                <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe">
+                  <span class="svg-wrapper">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <p class="newsletter-subtext">Enjoy 10% off your first purchase on sign up</p>
             </div>
-            <p class="newsletter-subtext">Enjoy 10% off your first purchase on sign up</p>
-          </div>
-        {%- endform -%}
+          {%- endform -%}
+        </div>
       </div>
     {%- endif -%}
 
-    <div class="footer__blocks-wrapper grid">
+    <div class="footer__blocks-wrapper">
       {%- for block in section.blocks -%}
-        <div class="footer-block grid__item" {{ block.shopify_attributes }}>
+        <div class="footer-block" {{ block.shopify_attributes }}>
           {%- if block.settings.heading != blank -%}
-            <p class="footer-block__heading-small">{{- block.settings.heading -}}</p>
+            <p style="font-size: 1.2rem; text-transform: uppercase; opacity: 0.4; margin-bottom: 2rem;">{{- block.settings.heading -}}</p>
           {%- endif -%}
 
-          {%- case block.type -%}
-            {%- when 'link_list' -%}
-              {%- if block.settings.menu != blank -%}
-                <ul class="footer-block__details-content list-unstyled">
-                  {%- for link in block.settings.menu.links -%}
-                    <li>
-                      <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link">
-                        {{ link.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
-          {%- endcase -%}
+          {%- if block.settings.menu != blank -%}
+            <ul class="list-unstyled">
+              {%- for link in block.settings.menu.links -%}
+                <li style="margin-bottom: 1rem;">
+                  <a href="{{ link.url }}" style="font-size: 1.7rem; font-weight: 500; text-decoration: none;">
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -248,22 +232,20 @@
 
 {% schema %}
 {
-  "name": "t:sections.footer.name",
+  "name": "Footer Custom",
   "blocks": [
     {
       "type": "link_list",
-      "name": "Link list",
+      "name": "Menu",
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "Quick links",
           "label": "Heading"
         },
         {
           "type": "link_list",
           "id": "menu",
-          "default": "footer",
           "label": "Menu"
         }
       ]
