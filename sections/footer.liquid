@@ -75,6 +75,7 @@
     letter-spacing: -2px !important;
     margin-bottom: 4rem !important;
     text-transform: none !important;
+    max-width: 530px !important; /* <--- THIS LOCKS THE TEXT WRAP ON DESKTOP */
   }
 
   .footer-block__heading strong,
@@ -121,7 +122,6 @@
     border-bottom: 1px solid #ffffff !important;
     background: transparent !important;
     border-radius: 0 !important;
-    /* Top 1rem, Right 4rem (for arrow), Bottom 1rem, Left 0 */
     padding: 1rem 4rem 1rem 0 !important; 
     box-shadow: none !important;
     font-size: 1.6rem;
@@ -130,9 +130,9 @@
 
   .footer .field__label {
     left: 0 !important;
-    padding-left: 0 !important; /* Strips Shopify's default indent */
+    padding-left: 0 !important;
     text-align: left !important;
-    transform-origin: left top !important; /* Keeps label flush left when typing */
+    transform-origin: left top !important; 
   }
   /* -------------------------------------- */
 
@@ -245,7 +245,7 @@
   <div class="footer__content-bottom">
     <div class="footer__content-bottom-wrapper page-width">
       <div class="footer-custom-logo">
-        <h2>backupbuddy</h2>
+        <h2>backupbuddy logo</h2>
       </div>
 
       <div class="footer-bottom-links">
@@ -289,7 +289,7 @@
       "type": "html",
       "id": "newsletter_heading",
       "default": "Sign up to our<br>mailing list to<br><strong>stay powered.</strong>",
-      "label": "Newsletter heading (Use <br> for line breaks)"
+      "label": "Newsletter heading"
     },
     {
       "type": "range",
