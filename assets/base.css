@@ -3644,7 +3644,7 @@ details-disclosure > details {
 
 /* 4. TOTAL PRICE: Typography next to quantity */
 .custom-total-price {
-  font-family: Chillax-Regular, sans-serif; /* Inherits your theme's default body font */
+  font-family: Chillax-Light, sans-serif; /* Inherits your theme's default body font */
   font-size: 28px !important;
   font-weight: 600 !important;
   color: #111;
