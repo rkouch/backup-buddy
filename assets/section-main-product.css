@@ -250,6 +250,12 @@ a.product__text {
   margin-bottom: 1.5rem;
 }
 
+.custom-bubbly-title {
+  font-family: 'Chillax-Variable', sans-serif !important;
+  font-weight: 800; /* Adjust weight as needed */
+  /* Add other styles here */
+}
+
 .product__title > * {
   margin: 0;
 }
