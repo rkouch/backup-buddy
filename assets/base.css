@@ -3646,7 +3646,6 @@ details-disclosure > details {
 .custom-total-price {
   font-family: Chillax-Extralight, sans-serif; /* Inherits your theme's default body font */
   font-size: 28px !important;
-  font-weight: 600 !important;
   color: #111;
 }
 
