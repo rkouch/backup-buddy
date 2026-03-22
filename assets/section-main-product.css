@@ -250,10 +250,24 @@ a.product__text {
   margin-bottom: 1.5rem;
 }
 
-.custom-bubbly-title {
+.chillax-variable {
   font-family: 'Chillax-Variable', sans-serif !important;
   font-weight: 800; /* Adjust weight as needed */
-  /* Add other styles here */
+}
+
+.chillax-variable {
+  font-family: 'Chillax-Extralight', sans-serif !important;
+  font-weight: 800; /* Adjust weight as needed */
+}
+
+.chillax-variable {
+  font-family: 'Chillax-Light', sans-serif !important;
+  font-weight: 800; /* Adjust weight as needed */
+}
+
+.chillax-variable {
+  font-family: 'Chillax-Regular', sans-serif !important;
+  font-weight: 800; /* Adjust weight as needed */
 }
 
 .product__title > * {
