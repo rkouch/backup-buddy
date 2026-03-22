@@ -3644,7 +3644,7 @@ details-disclosure > details {
 
 /* 4. TOTAL PRICE: Typography next to quantity */
 .custom-total-price {
-  font-family: inherit !important;
+  font-family: 'Chillax-Light', sans-serif !important;
   font-size: 28px !important;
   color: #111;
 }
@@ -3693,12 +3693,4 @@ details-disclosure > details {
 /* Ensure the quantity pill doesn't have hidden margins pushing things around */
 .price-per-item__container .quantity {
   margin: 0 !important;
-}
-
-/* Apply your custom bubbly font to the total price numbers */
-.custom-total-price {
-  font-family: 'Chillax-Custom', sans-serif !important;
-  font-size: 32px !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
 }
