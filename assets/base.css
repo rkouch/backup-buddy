@@ -3672,3 +3672,34 @@ details-disclosure > details {
   background-color: #f4f4f4 !important;
   box-shadow: inset 0 0 0 1px #111 !important; /* Makes the border look thicker when selected */
 }
+
+/* 7. QUANTITY & TOTAL PRICE ALIGNMENT */
+.price-per-item__container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 15px !important; /* Creates perfect spacing between the pill and the price */
+  flex-wrap: wrap !important;
+  margin-top: 10px;
+}
+
+/* Remove the old margin that was pushing it out of alignment */
+.custom-total-price-wrapper {
+  margin-left: 0 !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+}
+
+/* Ensure the quantity pill doesn't have hidden margins pushing things around */
+.price-per-item__container .quantity {
+  margin: 0 !important;
+}
+
+/* Apply your custom bubbly font to the total price numbers */
+.custom-total-price {
+  font-family: 'Chillax-Custom', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
