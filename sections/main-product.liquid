@@ -98,9 +98,9 @@
                 </p>
             {%- when 'title' -%}
                 <div class="product__title custom-title-wrapper" {{ block.shopify_attributes }}>
-                    <h1 class="chillax-variable">{{ product.title | downcase | escape }}</h1>
+                    <h1 class="custom-bubbly-title">{{ product.title | downcase | escape }}</h1>
                     <a href="{{ product.url }}" class="product__title">
-                        <h2 class="h1 chillax-variable">
+                        <h2 class="h1 custom-bubbly-title">
                             {{ product.title | downcase | escape }}
                         </h2>
                     </a>
