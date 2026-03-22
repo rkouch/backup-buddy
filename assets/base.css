@@ -3644,7 +3644,7 @@ details-disclosure > details {
 
 /* 4. TOTAL PRICE: Typography next to quantity */
 .custom-total-price {
-  font-family: 'Chillax-Light', sans-serif !important;
+  font-family: 'Chillax-Regular', sans-serif !important;
   font-size: 28px !important;
   color: #111;
 }
