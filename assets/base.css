@@ -3695,3 +3695,23 @@ details-disclosure > details {
 .price-per-item__container .quantity {
   margin: 0 !important;
 }
+
+/* 8. MAIN PRICE (Under the product title) */
+.price .price-item {
+  font-family: 'Chillax-Light', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  color: #111 !important;
+  letter-spacing: 0 !important;
+}
+
+/* 9. "QUANTITY" LABEL */
+.quantity__label {
+  font-family: 'Chillax-Light', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #111 !important;
+  letter-spacing: 0 !important;
+  text-transform: capitalize !important; /* Ensures it says "Quantity" instead of "QUANTITY" */
+  margin-bottom: 8px !important;
+}
